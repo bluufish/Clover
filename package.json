@@ -23,12 +23,15 @@
   "dependencies": {
     "axios": "^0.15.3",
     "body-parser": "^1.16.1",
+    "chalk": "^2.3.0",
     "compression": "^1.7.1",
     "connect-session-sequelize": "^4.1.0",
     "express": "^4.14.1",
     "express-session": "^1.15.1",
     "history": "^4.6.3",
+    "japaneasy": "^0.2.2",
     "morgan": "^1.8.1",
+    "mstranslator": "^3.0.0",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
     "pg": "^6.1.2",
@@ -43,7 +46,8 @@
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.2.0",
     "sequelize": "^4.3.1",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "stardust": "^0.52.5"
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.9.0",
