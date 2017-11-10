@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
 import Dictionary from 'japaneasy'
-const translate = new Dictionary({ dictionary: "glossing" })
+const translate = new Dictionary({
+    dictionary: "glossing", timeout: 500
+})
+
 // import {Button} from 'stardust'
 
 class Translator extends Component {
@@ -11,11 +14,11 @@ class Translator extends Component {
         this.state = {
             input: "",
             output: "",
-            definition: {},
+            definition: "",
             translationPath: 'from=ja&to=en'
         }
         this.onChange = this.onChange.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
+        this.onClick = this.onClick.bind(this)
         this.onSelect = this.onSelect.bind(this)
     }
 
@@ -23,8 +26,7 @@ class Translator extends Component {
         this.setState({ input: event.target.value })
     }
 
-    onSubmit(event) {
-        event.preventDefault()
+    onClick() {
         Axios.post(`/api/translate/?${this.state.translationPath}`, {
             text: this.state.input
         })
@@ -32,30 +34,34 @@ class Translator extends Component {
                 this.setState({ output: res.data })
             })
             .then(_ => translate(this.state.output).then(definition => {
-                console.log(definition)
-                //console.log(this.state.output)
+                console.log(JSON.stringify(definition))
+                this.setState({ definition })
             }))
     }
 
     onSelect(event) {
-        this.setState({translationPath: event.target.value, input: '', output: ''})
+        this.setState({ translationPath: event.target.value, input: '', output: '' })
     }
+    
 
     render() {
         return (
-            <div>
-                <h1>
-                    TRANSLATE SOMETHING
-                </h1>
-                <select onChange={(event) => this.onSelect(event)}>
-                    <option value='from=ja&to=en'> JPN to ENG</option>
-                    <option value='from=en&to=ja'> ENG to JPN</option>
-                </select>
-                <form onSubmit={(event) => this.onSubmit(event)}>
-                    <input value={this.state.input} onChange={(event) => this.onChange(event)} />
-                    <button>Translate</button>
-                </form>
-                <div>{this.state.output}</div>
+            <div className="wrapper">
+                <nav className="one">
+                    <h1> クルリ</h1>
+                </nav>
+                <div className="two">
+                    <header>
+                        <button onClick={this.onClick}>Translate</button>
+                        <select onChange={(event) => this.onSelect(event)}>
+                            <option value='from=ja&to=en'> JPN to ENG</option>
+                            <option value='from=en&to=ja'> ENG to JPN</option>
+                        </select>
+                    </header>
+                    <textarea className="one" value={this.state.input} onChange={(event) => this.onChange(event)}/>
+                </div>
+                <div className="three">{this.state.output}</div>
+                <textarea className="four" defaultValue= "Store Text HERE"/> 
             </div>
         )
 
