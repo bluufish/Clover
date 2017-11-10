@@ -42,7 +42,7 @@ class Translator extends Component {
     onSelect(event) {
         this.setState({ translationPath: event.target.value, input: '', output: '' })
     }
-    
+
 
     render() {
         return (
@@ -50,18 +50,19 @@ class Translator extends Component {
                 <nav className="one">
                     <h1> クルリ</h1>
                 </nav>
-                <div className="two">
-                    <header>
-                        <button onClick={this.onClick}>Translate</button>
-                        <select onChange={(event) => this.onSelect(event)}>
-                            <option value='from=ja&to=en'> JPN to ENG</option>
-                            <option value='from=en&to=ja'> ENG to JPN</option>
-                        </select>
-                    </header>
-                    <textarea className="one" value={this.state.input} onChange={(event) => this.onChange(event)}/>
-                </div>
-                <div className="three">{this.state.output}</div>
-                <textarea className="four" defaultValue= "Store Text HERE"/> 
+                <header className="five">
+                    <button onClick={this.onClick}>Translate</button>
+                    <select onChange={(event) => this.onSelect(event)}>
+                        <option value='from=ja&to=en'> JPN to ENG</option>
+                        <option value='from=en&to=ja'> ENG to JPN</option>
+                    </select>
+                </header>
+                <header className="six">
+                    <button>Speech</button>
+                </header>
+                <textarea className="two" value={this.state.input} onChange={(event) => this.onChange(event)} />
+                <div className="three" id="output">{`=> ${this.state.output}`}</div>
+                <textarea className="four" defaultValue="Store Text HERE" />
             </div>
         )
 
