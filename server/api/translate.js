@@ -1,5 +1,7 @@
 const router = require('express').Router()
 var MsTranslator = require('mstranslator');
+var googleTTS = require('google-tts-api');
+
 require('../../secrets')
 
 const client = new MsTranslator({
@@ -21,5 +23,10 @@ router.post('/', (req, res, next) => {
 
 })
 
+router.post('/speech', (req,res,next) => {
+    return googleTTS(req.body.text, req.body.language, 1)   // speed normal = 1 (default), slow = 0.24
+    .then(url => res.send(url))
+    .catch(err => console.error(err))
+})
 
 module.exports = router
