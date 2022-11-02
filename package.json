@@ -29,7 +29,7 @@
     "express": "^4.14.1",
     "express-session": "^1.15.1",
     "google-tts-api": "0.0.2",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "history": "^4.6.3",
     "japaneasy": "^0.2.2",
     "morgan": "^1.8.1",
